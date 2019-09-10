@@ -14,6 +14,23 @@ router.get("/", (req, res) => {
     });
 });
 
+router.get("/:id", (req, res) => {
+  const { id } = req.params;
+
+  db("cars")
+    .where({ id })
+    .first()
+    .then(car => {
+      res.status(200).json(car);
+    })
+    .catch(err => {
+      console.log(err);
+      res
+        .status(500)
+        .json({ error: "failed to retrieve car with specific ID" });
+    });
+});
+
 router.post("/", (req, res) => {
   carData = req.body;
 

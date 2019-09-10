@@ -5,6 +5,9 @@ exports.up = function(knex) {
       //id, primary key, auto-increment, integer
       tbl.icrements();
 
+      //VIN, make, model, mileage REQUIRED
+
+      //transmission type, status of title not always immediately known
 
   })
 };

@@ -14,22 +14,22 @@ router.get("/", (req, res) => {
     });
 });
 
-router.post('/', (req, res) => {
-    carData = req.body;
+router.post("/", (req, res) => {
+  carData = req.body;
 
-    db('cars')
+  db("cars")
     .insert(carData)
     .then(ids => {
-        db('cars')
-            .where({ id: ids[0] })
-            .then(newCar => {
-                res.status(201).json(newCar)
-            })
+      db("cars")
+        .where({ id: ids[0] })
+        .then(newCar => {
+          res.status(201).json(newCar);
+        });
     })
     .catch(err => {
-        console.log(err);
-        res.status(500).json({ error: "Error creating car data" })
-    })
-})
+      console.log(err);
+      res.status(500).json({ error: "Error creating car data" });
+    });
+});
 
 module.exports = router;
